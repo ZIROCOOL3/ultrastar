@@ -1,0 +1,114 @@
+﻿@page "/inicio"
+@using UltraStarArg.Data
+@using UltraStarArg.Models
+@inject IMySqlDataAccess _data
+@inject IConfiguration _config
+
+<body class="is-preload">
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="inner">
+
+							<!-- Logo -->
+								<a href="index.html" class="logo">
+									<span class="symbol"><img src="images/logo.svg" alt="" /></span><span class="title">UltraStar Arg</span>
+								</a>
+
+							<!-- Nav -->
+								<nav>
+									<ul>
+										<li><a href="#menu">Menu</a></li>
+									</ul>
+								</nav>
+
+						</div>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<h2>Menu</h2>
+						<ul>
+							<li><a href="index.html">Inicio</a></li>
+							<li><a href="generic.html">Programas</a></li>
+							<li><a href="generic.html">Tutoriales</a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+							<header>
+								<h1>Esta es un pagina donde podras descargar canciones para el juego ultrastar deluxe de forma gratuita.</h1>
+								<p>La canciones son recopilaciones de paginas y algunas propias. tambien creare tutoriales para que puedas crear tus propias canciones</p>
+							</header>
+							<h2>Ultimas Canciones Agregadas</h2>
+							<section class="tiles" >
+		
+								@foreach (var cat in canciones)
+								{
+  									<RadzenCard class="m-3">
+										  <div>
+											  <a href=@cat.RutaCancion>
+												  <h3 class="h5">Descargar</h3>
+											  </a>
+										  </div>
+										
+										<div class="d-flex flex-row">
+											<RadzenImage Path="@cat.Imagen" Class="rounded-circle float-left mr-3" Style="width: 100px; height: 100px;" />
+											<div>
+												<div>Artista</div>
+												<b>@cat.Fk_artista</b>
+												<div class="mt-3">Cancion</div>
+												<b>@cat.Nombre</b>
+											</div>
+										</div>
+									</RadzenCard>
+								}
+
+							</section>
+						</div>
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<div class="inner">
+							<section>
+								<h2>Siguenos</h2>
+								<ul class="icons">
+									<li><a href="#" class="icon brands style2 fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-facebook-f"><span class="label">Facebook</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-instagram"><span class="label">Instagram</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-dribbble"><span class="label">Dribbble</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-github"><span class="label">GitHub</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-500px"><span class="label">500px</span></a></li>
+									<li><a href="#" class="icon solid style2 fa-phone"><span class="label">Phone</span></a></li>
+									<li><a href="#" class="icon solid style2 fa-envelope"><span class="label">Email</span></a></li>
+								</ul>
+							</section>
+							<ul class="copyright">
+								<li>&copy;2022 Girosoft</li>
+							</ul>
+						</div>
+					</footer>
+
+			</div>
+
+
+	</body>
+
+@code {
+	string RutaBaseImagen =@"https://javiercanteros.com.ar/ultrastar/imagenes/";
+
+	List<Canciones> canciones = new List<Canciones>();
+	// Load the initial data
+    protected override async Task OnInitializedAsync()
+    {
+        string sql="SELECT * FROM Ult_Canciones order by id";
+        canciones=await _data.LoadData<Canciones,dynamic>(sql,new{},
+        _config.GetConnectionString("MySQLConnection"));
+
+    }
+}
