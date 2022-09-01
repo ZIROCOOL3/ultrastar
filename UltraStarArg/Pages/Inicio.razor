@@ -1,4 +1,4 @@
-﻿@page "/inicio"
+﻿@page "/"
 @using UltraStarArg.Data
 @using UltraStarArg.Models
 @inject IMySqlDataAccess _data
@@ -13,8 +13,11 @@
 						<div class="inner">
 
 							<!-- Logo -->
-								<a href="index.html" class="logo">
-									<span class="symbol"><img src="images/logo.svg" alt="" /></span><span class="title">UltraStar Arg</span>
+								@*<a href="/" class="logo">
+									<span class="symbol"><img src="" alt="" /></span><span class="title">UltraStar Arg</span>
+								</a>*@
+								<a href="/">
+									<H4>UltraStar Arg</H4>
 								</a>
 
 							<!-- Nav -->
@@ -31,9 +34,9 @@
 					<nav id="menu">
 						<h2>Menu</h2>
 						<ul>
-							<li><a href="index.html">Inicio</a></li>
-							<li><a href="generic.html">Programas</a></li>
-							<li><a href="generic.html">Tutoriales</a></li>
+							<li><a href="/">Inicio</a></li>
+							<li><a href="/Programas">Programas</a></li>
+							<li><a href="/Tutoriales">Tutoriales</a></li>
 						</ul>
 					</nav>
 
@@ -50,21 +53,30 @@
 								@foreach (var cat in canciones)
 								{
   									<RadzenCard class="m-3">
-										  <div>
-											  <a href=@cat.RutaCancion>
-												  <h3 class="h5">Descargar</h3>
-											  </a>
-										  </div>
+	
 										
 										<div class="d-flex flex-row">
-											<RadzenImage Path="@cat.Imagen" Class="rounded-circle float-left mr-3" Style="width: 100px; height: 100px;" />
+											<RadzenImage Path="@cat.Imagen" Class="rounded-circle float-left mr-4" Style="width: 100px; height: 100px;" />
 											<div>
 												<div>Artista</div>
-												<b>@cat.Fk_artista</b>
+												<b>@cat.Artista</b>
 												<div class="mt-3">Cancion</div>
 												<b>@cat.Nombre</b>
+												<div class="mt-3">Ideoma</div>
+												<b>@cat.Ideoma</b>
+												<div class="mt-3">Año</div>
+												<b>@cat.Año</b>
+												<div class="mt-3">Duo</div>
+												<b>@cat.Duo</b>
+
 											</div>
 										</div>
+									    <div>
+											<a href=@cat.RutaCancion>
+												<h3 class="h5">Descargar</h3>
+											</a>
+										</div>
+
 									</RadzenCard>
 								}
 
@@ -75,19 +87,14 @@
 				<!-- Footer -->
 					<footer id="footer">
 						<div class="inner">
-							<section>
+							@*<section>
 								<h2>Siguenos</h2>
 								<ul class="icons">
-									<li><a href="#" class="icon brands style2 fa-twitter"><span class="label">Twitter</span></a></li>
 									<li><a href="#" class="icon brands style2 fa-facebook-f"><span class="label">Facebook</span></a></li>
 									<li><a href="#" class="icon brands style2 fa-instagram"><span class="label">Instagram</span></a></li>
-									<li><a href="#" class="icon brands style2 fa-dribbble"><span class="label">Dribbble</span></a></li>
 									<li><a href="#" class="icon brands style2 fa-github"><span class="label">GitHub</span></a></li>
-									<li><a href="#" class="icon brands style2 fa-500px"><span class="label">500px</span></a></li>
-									<li><a href="#" class="icon solid style2 fa-phone"><span class="label">Phone</span></a></li>
-									<li><a href="#" class="icon solid style2 fa-envelope"><span class="label">Email</span></a></li>
 								</ul>
-							</section>
+							</section>*@
 							<ul class="copyright">
 								<li>&copy;2022 Girosoft</li>
 							</ul>
@@ -106,7 +113,11 @@
 	// Load the initial data
     protected override async Task OnInitializedAsync()
     {
-        string sql="SELECT * FROM Ult_Canciones order by id";
+        string sql=@"SELECT C.id,I.nombre as Ideoma ,A.nombre as Artista,R.nombre as Ritmo,C.año ,C.nombre,C.Duo,C.imagen,C.RutaCancion FROM Ult_Canciones C
+			inner join Ult_Artistas A on A.id=C.fk_Artista
+			inner join Ult_Ideomas I on I.id = C.fk_Ideoma
+			inner join Ult_Ritmos R on R.id = C.fk_Ritmo
+			order by C.id desc";
         canciones=await _data.LoadData<Canciones,dynamic>(sql,new{},
         _config.GetConnectionString("MySQLConnection"));
 
