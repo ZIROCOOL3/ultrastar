@@ -1,0 +1,170 @@
+.canciones {
+  clear: both;
+  margin-right: -10px;
+  list-style: none;
+  text-align: center;}
+
+.canciones h3 {
+    clear: both;
+    font-size: 1.6em;
+    margin: 6px 0;
+    overflow: hidden; }
+
+.canciones h3 a {
+      color:  #ffffff;
+      display: table; }
+
+.canciones h3 a:last-child {
+        font-size: .9em; }
+
+.canciones h3 a:hover {
+        color: #ee0b0b;
+        text-decoration: none; }
+
+.canciones > li {
+    display: inline-block;
+    width: 320px;
+    height: 380px;
+    margin: 0 20px 20px 0;
+    padding: 15px;
+    overflow: hidden;
+    background: #1A1A1A;
+    color: #FFF;
+    text-align: left;
+    position: relative;
+    cursor: help; }
+
+.canciones > li > button {
+      width: 100px; }
+
+.canciones > li > img {
+      width: 150px;
+      height: 150px;
+      cursor: pointer; }
+
+.canciones > li.no_previsualizacion {
+    border: 5px solid #E65D19;
+    padding: 10px; }
+
+.canciones button {
+    font-size: 1em; }
+
+.canciones iframe {
+    position: absolute;
+    left: 15px;
+    top: 0; }
+
+.canciones #cerrar {
+    position: absolute;
+    left: 295px;
+    top: 0; }
+
+.canciones p {
+    padding: 0;
+    clear: left;
+    font-size: 1.2em; }
+
+.canciones .datos {
+    float: right;
+    width: 160px;
+    font-size: 1.2em; }
+
+.canciones .acciones {
+    position: absolute;
+    bottom: 15px;
+    height: 45px; }
+
+.caratula_edicion {
+  float: left;
+  margin-right: 10px;
+  margin-bottom: 50px; }
+
+.caratula_edicion img {
+    width: 65px;
+    height: 65px; }
+.datos > * {
+  height: 15px; }
+
+.datos dt {
+  float: left;
+  width: 85px;
+  color: #BEBEBE;padding-top: 12px; }
+
+.datos dt a {
+    width: 85px;
+    color: #BEBEBE; 
+  }
+
+.datos dd {
+  width: 75px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 17px; 
+padding-top: 12px;}
+
+.datos dd a {
+    color: #FFF; }
+
+.datos dd a:hover {
+      color: #F15C89;
+      text-decoration: none; }
+
+.datos .icono {
+  width: auto; }
+
+.datos .icono:before {
+    text-align: center; }
+
+.datos .solo:before {
+  content: "\f007";
+  color: #E00000; }
+
+.datos .multi:before {
+  content: "\f007"; }
+
+.datos .doradas:before {
+  content: "\f001";
+  color: #E00000; }
+
+.datos .fondo:before {
+  content: "\f03e"; }	
+.acciones {
+  font-size: .9em; }
+
+.acciones li {
+    float: left;
+    display: block;
+    position: relative;
+    width: 80px;
+    text-align: center; }
+
+.acciones li > * {
+      width: 80px;
+      text-align: center;
+      color: #BEBEBE;
+      outline: none;font-size: 30px;}
+
+.acciones li > *:after {
+        width: 80px;
+        text-align: center; }
+
+.acciones li > *:hover {
+        color: #E00000; }
+.icono {
+  font-family: "Ubuntu", sans-serif; }
+
+.icono:before {
+    display: inline-block;
+    vertical-align: baseline;
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    font-size: .9em;
+    min-width: 1em;
+    margin-right: .2em; }
+
+.icono:hover {
+    text-decoration: none; }
+.i {
+  padding-right: 10px;
+}

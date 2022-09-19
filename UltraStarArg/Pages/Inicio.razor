@@ -50,34 +50,36 @@
 							<h2>Ultimas Canciones Agregadas</h2>
 							<section class="tiles" >
 		
-								@foreach (var cat in canciones)
+								@foreach (var Cancion in canciones)
 								{
-  									<RadzenCard class="m-3">
-	
-										
-										<div class="d-flex flex-row">
-											<RadzenImage Path="@cat.Imagen" Class="rounded-circle float-left mr-4" Style="width: 100px; height: 100px;" />
-											<div>
-												<div>Artista</div>
-												<b>@cat.Artista</b>
-												<div class="mt-3">Cancion</div>
-												<b>@cat.Nombre</b>
-												<div class="mt-3">Ideoma</div>
-												<b>@cat.Ideoma</b>
-												<div class="mt-3">Año</div>
-												<b>@cat.Año</b>
-												<div class="mt-3">Duo</div>
-												<b>@cat.Duo</b>
-
-											</div>
-										</div>
-									    <div>
-											<a href=@cat.RutaCancion>
-												<h3 class="h5">Descargar</h3>
-											</a>
-										</div>
-
-									</RadzenCard>
+									<ul class="canciones">
+										<li title="Descargar">
+										   <dl class="datos">
+											   <dt>Idioma</dt>
+												   <dd>@Cancion.Ideoma.First().ToString().ToUpper()@Cancion.Ideoma.ToLower().Substring(1)</dd>
+											   <dt>Año</dt>
+												   <dd>@Cancion.Año</dd>
+											   <dt>Ritmo</dt>
+												   <dd>@Cancion.Ritmo.First().ToString().ToUpper()@Cancion.Ritmo.ToLower().Substring(1)</dd>
+											   <dt>Duo</dt>
+												   <dd>@Cancion.Duo</dd>
+										   </dl>
+										   <img src="@Cancion.Imagen"/>
+										   <h3>
+											   <a>@Cancion.Artista</a>
+											   <a>@Cancion.Nombre</a>
+										   </h3>
+										   <ul class="acciones" data-id="">
+											   <li>
+												    <a href=@Cancion.RutaCancion>
+														<i class="fas fa-file-download">Descargar</i>
+													</a>
+													
+  											   </li>
+										   </ul>
+									   </li>
+								   </ul>
+  									
 								}
 
 							</section>
