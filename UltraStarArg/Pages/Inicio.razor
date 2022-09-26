@@ -56,11 +56,11 @@
 										<li title="Descargar">
 										   <dl class="datos">
 											   <dt>Idioma</dt>
-												   <dd>@Cancion.Ideoma.First().ToString().ToUpper()@Cancion.Ideoma.ToLower().Substring(1)</dd>
+												   <dd>@Cancion.Ideoma</dd>
 											   <dt>Año</dt>
 												   <dd>@Cancion.Año</dd>
 											   <dt>Ritmo</dt>
-												   <dd>@Cancion.Ritmo.First().ToString().ToUpper()@Cancion.Ritmo.ToLower().Substring(1)</dd>
+												   <dd>@Cancion.Ritmo</dd>
 											   <dt>Duo</dt>
 												   <dd>@Cancion.Duo</dd>
 										   </dl>
@@ -115,7 +115,7 @@
 	// Load the initial data
     protected override async Task OnInitializedAsync()
     {
-        string sql=@"SELECT C.id,I.nombre as Ideoma ,A.nombre as Artista,R.nombre as Ritmo,C.año ,C.nombre,C.Duo,C.imagen,C.RutaCancion FROM Ult_Canciones C
+        string sql=@"SELECT C.id,concat(UCASE(LEFT(I.nombre, 1)), LCASE(SUBSTRING(I.nombre, 2))) as Ideoma ,concat(UCASE(LEFT(A.nombre, 1)), LCASE(SUBSTRING(A.nombre, 2))) as Artista,concat(UCASE(LEFT(R.nombre, 1)), LCASE(SUBSTRING(R.nombre, 2))) as Ritmo,C.año ,concat(UCASE(LEFT(C.nombre, 1)), LCASE(SUBSTRING(C.nombre, 2))) as nombre,C.Duo,C.imagen,C.RutaCancion FROM Ult_Canciones C
 			inner join Ult_Artistas A on A.id=C.fk_Artista
 			inner join Ult_Ideomas I on I.id = C.fk_Ideoma
 			inner join Ult_Ritmos R on R.id = C.fk_Ritmo
